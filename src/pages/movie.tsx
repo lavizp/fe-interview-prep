@@ -51,12 +51,13 @@ const MovieBooking = () => {
     const onBook = ()=>{
         setBookedSeats(selectedSeats)
         setSelectedSeats([])
+        setTotal(0)
     }
   return (
     <div>
         {seatData.map((item, index)=>(
             <div key={item.id}>
-                <SeatContainer tier={item} onSelect={onSeatClick} start_index={index == 0? 0: seatData.filter((_,i)=>i!==index).reduce((acc, curr)=>acc+curr.columns,0)}/>
+                <SeatContainer bookedSeats={bookedSeats} tier={item} onSelect={onSeatClick} start_index={index == 0? 0: seatData.filter((_,i)=>i!==index).reduce((acc, curr)=>acc+curr.columns,0)}/>
             </div>
         ))}
         <div className="m-5 flex justify-between items-center">
@@ -64,7 +65,6 @@ const MovieBooking = () => {
             <button className="cursor-pointer bg-blue-500 rounded-md px-3 py-1 text-white" onClick={onBook}>
                 Book Now
             </button>
-
         </div>
     </div>
   )

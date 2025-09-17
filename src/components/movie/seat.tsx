@@ -18,6 +18,7 @@ const Seat = ({color, seat, onSelect }: SeatProps) => {
     <div className={`rounded-t-2xl p-3 cursor-pointer`} 
     style={{ backgroundColor: getColor() }}
     onClick={()=>{
+        if(seat.booked) return;
         onSelect(seat, !selected)
         setSelected(val=>!val)}}>
         {seat.name}
